@@ -9,6 +9,7 @@ CREATE TABLE users (
     username VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     hashpass VARCHAR NOT NULL,
+    UNIQUE(username, email),
     PRIMARY KEY(username)
 );
 
@@ -27,9 +28,9 @@ CREATE TABLE tweets (
 ); 
 
 -- Sample Users
-INSERT INTO users(username, email, hashpass) VALUES('williamguy', 'powerpuff@hotmail.com', '$52DAF');
-INSERT INTO users(username, email, hashpass) VALUES('jankers', 'coolguy@gmail.com', '#$#32F');
-INSERT INTO users(username, email, hashpass) VALUES('goyo123', 'patriots@outlook.com', '#$@356');
+INSERT INTO users(username, email, hashpass) VALUES('williamguy', 'powerpuff@hotmail.com', 'hashedpassword');
+INSERT INTO users(username, email, hashpass) VALUES('jankers', 'coolguy@gmail.com', '12345');
+INSERT INTO users(username, email, hashpass) VALUES('goyo123', 'patriots@outlook.com', 'racecar');
 
 -- Sample UserFollowers
 INSERT INTO userfollowers(followee, follower) VALUES('jankers', 'williamguy');
