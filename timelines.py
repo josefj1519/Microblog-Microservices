@@ -1,3 +1,8 @@
+# CPSC 449 Project 2 Mircoblog Microservices
+# by Josef Jankowski and William Timani 
+# Josef Jankowski: josefj1519@csu.fullerton.edu
+# William Timani: williamtimani@csu.fullerton.edu
+# timelines.py contains the timelines microservices.
 
 from datetime import datetime
 from flask_api import FlaskAPI, status, exceptions
@@ -26,7 +31,7 @@ def getUserTimeline():
 		return {'error': 'User ' + user + ' does not exist'}, status.HTTP_400_BAD_REQUEST
 
 	tweets = queries.get_user_tweets(username=user)
-	return list(tweets)
+	return list(tweets), status.HTTP_200_OK
 
 # Get the public timeline.
 # http GET http://127.0.0.1:5000/timeline
@@ -34,7 +39,7 @@ def getUserTimeline():
 @timelines_api.route('/timeline', methods=['GET'])
 def getPublicTimeline():
 	tweets = queries.get_all_tweets()
-	return list(tweets)
+	return list(tweets), status.HTTP_200_OK
 
 # Get the home timeline for the user
 # http GET http://127.0.0.1:5000/home?user=''
@@ -57,7 +62,7 @@ def getHomeTimeline():
 
 	tweets = queries.get_followed_tweets(followees=followeesList)
 
-	return list(tweets)
+	return list(tweets), status.HTTP_200_OK
 
 # Post a tweet under the specified username
 # http POST http://127.0.0.1:5000/tweet/create user='' text=''
@@ -78,4 +83,4 @@ def postTweet():
 
 	queries.add_user_tweet(username=user, tweet=text, currentTimestamp=datetime.now())
 
-	return {'success' : 'Tweet successfully posted.'}
+	return {'success' : 'Tweet successfully posted.'}, status.HTTP_200_OK
