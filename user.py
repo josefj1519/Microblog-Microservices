@@ -3,10 +3,12 @@ import pugsql
 from flask import request
 from flask_api import status, exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
+from timelines import timelines_api
 
 
 app = flask_api.FlaskAPI(__name__)
 app.config.from_envvar('APP_CONFIG')
+app.register_blueprint(timelines_api)
 
 queries = pugsql.module('queries/')
 queries.connect(app.config['DATABASE_URL'])
