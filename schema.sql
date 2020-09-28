@@ -1,5 +1,6 @@
 -- $ sqlite3 microblog.db < schema.sql
 
+PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS userfollowers;
@@ -17,7 +18,8 @@ CREATE TABLE userfollowers (
     followee VARCHAR NOT NULL,
     follower  VARCHAR NOT NULL,
     FOREIGN KEY(follower) REFERENCES users(username),
-    FOREIGN KEY(followee) REFERENCES users(username)
+    FOREIGN KEY(followee) REFERENCES users(username),
+    PRIMARY KEY(followee, follower)
 );
 
 CREATE TABLE tweets (
