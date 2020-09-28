@@ -1,8 +1,8 @@
 -- :name all_users :many
 select * from users;
 
--- :name check_for_user :scalar
-select username from users where username = :username
+-- :name check_for_user :one
+select * from users where username = :username
 
 -- :name create_user :insert
 insert into users (username, email, hashpass) values (:username, :email, :hashpass)
@@ -21,3 +21,6 @@ insert into userfollowers (followee, follower) values (:followee, :follower)
 
 -- :name stop_following 
 delete from userfollowers where followee = :followee and follower = :follower
+
+-- :name check_if_following :one
+select * from userfollowers where followee = :followee and follower = :follower

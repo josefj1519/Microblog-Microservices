@@ -75,7 +75,8 @@ def allUserFollowees():
 def addFollower():
     followee = request.json['followee']
     follower = request.json['follower']
-    #TODO: Check if user exists before adding.
+    if not checkUser(followee) or not checkUser(follower):
+        return {'error': 'User does not exist.' }, status.HTTP_400_BAD_REQUEST
     try:
         queries.start_following_user(followee=followee, follower=follower)
     except Exception as e:
@@ -89,6 +90,16 @@ def addFollower():
 def removeFollower():
     followee = request.json['followee']
     follower = request.json['follower']
-    #TODO: Do try catch statement or check if users exist before deleting.
+    if not checkIfFollowing(followee, follower):
+         return {'error': 'User does not exist or is not following the followee.' }, status.HTTP_400_BAD_REQUEST
     queries.stop_following(followee=followee, follower=follower)
     return {'success': 'User ' + follower + ' has stopped following ' + followee}
+
+def checkUser(username):
+    check_for_user = queries.check_for_user(username=username)
+    return check_for_user
+
+def checkIfFollowing(followee, follower):
+    check_if_following = queries.check_if_following(followee=followee, follower=follower)
+    return check_if_following
+    
