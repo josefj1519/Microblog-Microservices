@@ -4,7 +4,7 @@ William Timani: williamtimani@csu.fullerton.edu
 Josef Jankowski: josefj1519@csu.fullerton.edu
 
 Description:
-This project utilizes Flask, Pugsql and Foreman among other libraries in order to provide microservices for a simple blog-type web service. 
+This project utilizes Flask, Pugsql and Foreman among other Python libraries in order to provide microservices for a simple blog-type web service. 
 Features include: creating a user, authenticating, following/unfollowing, posting a tweet and checking timelines containing user's recent tweets. 
 For details on how to initialize the database and use these services, see below. 
 
