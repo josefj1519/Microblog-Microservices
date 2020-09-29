@@ -23,12 +23,12 @@ users.py
 
 Database Initialization:
 In order to intialize the database, ensure you have extracted the contents of the compressed file into a single folder, perserving the directory structure. 
-In the terminal, navigate to the root folder with the extracted contents and execute the command: Flask init. 
+In the terminal, navigate to the root folder with the extracted contents and execute the command: FLASK_APP=users flask init. 
 The database will be initialized with data entries and the services are ready to be used.
 
 Starting The Services:
 To start the services, in the terminal, navigate to the root folder with the extracted contents of the project. 
 Execute the command: foreman start and leave this terminal window running for as long as the services need to be active for. 
 In order to make a request to the services, execute an http request with the desired resource (check REST_API_Documentation for resource names or .py files for sample invocation lines for each function). 
-Example request to post a tweet using an httpie command: http POST http://127.0.0.1:5000/tweet/create user='' text=''.
+Example request to post a tweet using an HTTPie command: http POST http://127.0.0.1:<PORT>/tweet/create user='' text=''.
 
