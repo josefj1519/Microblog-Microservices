@@ -57,13 +57,13 @@ def createUser():
 
 # Requires a username and password query parameters.  
 # HTTPie commandline example:
-# http http://127.0.0.1:5000/users/authenticate username==<username> hashpass==<hashed_password>
+# http GET http://127.0.0.1:5000/users/authenticate username==<username> hashpass==<hashed_password>
 @app.route('/users/authenticate', methods=['GET'])
 def authenticateUser():
     user = queries.authenticate_user(username=request.args['username'], hashpass=request.args['hashpass'])
     if not list(user):
         return {'error': 'Invalid username or password' }, status.HTTP_403_FORBIDDEN
-    return {'success': 'User account succsefully authenticated.'}, status.HTTP_200_OK
+    return {'success': 'User account successfully authenticated.'}, status.HTTP_200_OK
 
 # Requires a username as a query parameter.
 # HTTPie commandline example:
